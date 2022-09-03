@@ -682,12 +682,20 @@ MonoBehaviour:
   - {fileID: 6734805}
   - {fileID: 462798873}
   - {fileID: 60191249}
+  ordenTexto: {fileID: 2081778789}
   mezclador: {fileID: 1939079783}
+  rotVelo: 180
   vaso: {fileID: 2052535268}
   siguiente: {fileID: 1323712028}
   valor: 000000000000000000000000000000000000000000000000000000000000000000000000
   contador: 0
   fases: 0
+  orden: 0
+  general: 
+  a: 
+  b: 
+  c: 
+  d: 
 --- !u!1 &101341651
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,7 +992,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: mezcla
 --- !u!222 &264283178
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4485,7 +4493,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1939079785}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 95496053}
+        m_TargetAssemblyTypeName: ControladorBebida, Assembly-CSharp
+        m_MethodName: Girar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1939079785
 MonoBehaviour:
   m_ObjectHideFlags: 0

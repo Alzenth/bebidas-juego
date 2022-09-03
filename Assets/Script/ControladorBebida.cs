@@ -7,9 +7,16 @@ public class ControladorBebida : MonoBehaviour
 {   //arreglo para guardar los botones
     public GameObject[] ingredientes;
 
+    public GameObject ordenTexto;
+
     //botones
+
+    //mezclador
     public GameObject mezclador;
+    public float rotVelo;
+    //vaso
     public GameObject vaso;
+
     public GameObject siguiente;
 
     //arreglo que guardael valor de los ingredientes
@@ -20,6 +27,14 @@ public class ControladorBebida : MonoBehaviour
 
     //contador de que parte del preparado esta(ingredientes = 1, mezcla = 2,etc)
     public int fases;
+
+    //puede borrarlo si gustas estaba intentando hacer que aqui se supieraa la orden y que componentes se ocupa borralo si sabes otra manera con el metodo Ordenes
+    public int orden;
+    public string general;
+    public string a;
+    public string b;
+    public string c;
+    public string d;
 
     private void Start()
     {
@@ -36,6 +51,8 @@ public class ControladorBebida : MonoBehaviour
 
     private void Update()
     {
+        orden = ordenTexto.GetComponent<Pedidos>().receta;
+
         if (contador == 4)
         {
             for (int i = 0; i < ingredientes.Length; ++i)
@@ -82,4 +99,87 @@ public class ControladorBebida : MonoBehaviour
             vaso.SetActive(false);
         }
     }
+
+    public void Girar()
+    {
+        mezclador.transform.Rotate(0, 0, rotVelo);
+    }
+    /*
+    public void Ordenes()
+    {
+        #region ordenes
+        switch (orden)
+        {
+            case 1:
+                general = "orden A";
+                break;
+            case 2:
+                general = "orden B";
+                break;
+            case 3:
+                general = "orden C";
+                break;
+            case 4:
+                general = "orden D";
+                break;
+            case 5:
+                general = "orden E";
+                break;
+            case 6:
+                general = "orden F";
+                break;
+            case 7:
+                general = "orden G";
+                break;
+            case 8:
+                general = "orden H";
+                break;
+            case 9:
+                general = "orden I";
+                break;
+            case 10:
+                general = "orden J";
+                break;
+            case 11:
+                general = "orden K";
+                break;
+            case 12:
+                general = "orden L";
+                break;
+            case 13:
+                general = "orden M";
+                break;
+        }
+        #endregion
+        switch (general)
+        {
+            case "orden A":
+                break;
+            case "orden B":
+                break;
+            case "orden C":
+                break;
+            case "orden D":
+                break;
+            case "orden E":
+                break;
+            case "orden F":
+                break;
+            case "orden G":
+                break;
+            case "orden H":
+                break;
+            case "orden I":
+                break;
+            case "orden J":
+                break;
+            case "orden K":
+                break;
+            case "orden L":
+                break;
+            case "orden M":
+                break;
+        }    
+    }
+    */
 }
