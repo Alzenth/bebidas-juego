@@ -5,11 +5,18 @@ using UnityEngine.UI;
 
 public class Pedidos : MonoBehaviour
 {
+    //texto
     public Text orden;
+
+    //variable para tiempo y limite de cuanto va llegarxd
     public float tiempo;
     public float limite;
+
+    //variable para saber que orden va pedir y para saber que orden pidio la anterior vez
     public int receta;
     public int guardarReceta;
+
+    //variable que funciona cuando termine de pensar la orden 
     public bool terminado;
 
     private void Start()
@@ -28,22 +35,24 @@ public class Pedidos : MonoBehaviour
             tiempo = 0;
         }
         */
-        if (terminado)
+        if (terminado == false)
         {
             IndicarPedido();
             tiempo += 1 * Time.deltaTime;
             if (tiempo >= limite)
             {
-                terminado = false;
+                terminado = true;
                 tiempo = 0;
             }
         }
     }
 
+    //metodo para elegir la orden aleatoriamente
     public void IndicarPedido()
     {
         receta = Random.Range(1, 13);
 
+        //los siguientes if funcionaba para que no eligiera lo mismo dos veces seguidas pero ya no funciona a menos que sea 3 ordenes xd
         if (receta == guardarReceta && receta >= 1 && receta <= 6)
         {
             receta += 1;

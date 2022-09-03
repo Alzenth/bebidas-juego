@@ -4,21 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ControladorBebida : MonoBehaviour
-{
+{   //arreglo para guardar los botones
     public GameObject[] ingredientes;
+
+    //botones
     public GameObject mezclador;
     public GameObject vaso;
     public GameObject siguiente;
 
+    //arreglo que guardael valor de los ingredientes
     public int[] valor;
 
+    //Contador de las veces que ppreesionas un boton(ingrediente)
     public int contador;
+
+    //contador de que parte del preparado esta(ingredientes = 1, mezcla = 2,etc)
     public int fases;
 
     private void Start()
     {
         fases = 1;
+
         SiguienteFase();
+
+        //guarda los el valor que tienen los ingredientes
         for (int i = 0; i < ingredientes.Length; ++i)
         {
             valor[i] = ingredientes[i].GetComponent<Valor>().val;
@@ -45,11 +54,13 @@ public class ControladorBebida : MonoBehaviour
         }
     }
 
+    //metodo que los botones ocupan para dar un valor cada que se presiona no sirve para nd mas 
     public void Pulsacion()
     {
         contador += 1;
     }
 
+    //metodo para las fases
     public void SiguienteFase()
     {
         if (fases == 1)

@@ -5,11 +5,17 @@ using UnityEngine.UI;
 
 public class sliderController : MonoBehaviour
 {
+    //variable para identificar cuando llegue al min y max de la barra
     [HideInInspector]
     public bool fin = false;
 
+    //variable para que vaya mas rapido la variable
     public float multi;
+
+    //variable que guarda en que valor se quedo la barra
     public float valor;
+
+    //variable para saber si se detiene el slider
     public bool detenerse;
 
     private void Start()
@@ -17,15 +23,17 @@ public class sliderController : MonoBehaviour
     }
     private void Update()
     {
+        //if para detener la barra cuando presionas X
         if (Input.GetKeyDown(KeyCode.X))
         {
-            valor = this.GetComponent<Slider>().value;
             detenerse = true;
+            valor = this.GetComponent<Slider>().value;
         }
         if (detenerse == true)
         {
             //this.GetComponent<Slider>().wholeNumbers = true;
 
+            //switch para que debe dar un valor segun que parte de la barra esta 
             switch (valor)
             {
                 case float n when ( n >= 0 && n <= 20):
@@ -55,6 +63,7 @@ public class sliderController : MonoBehaviour
         }
         else if(detenerse == false)
         {
+            //todo eso es ppara que el slider se mueva
             if (fin == false)
             {
                 this.GetComponent<Slider>().value = this.GetComponent<Slider>().value + multi * Time.deltaTime;
