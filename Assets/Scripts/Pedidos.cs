@@ -10,7 +10,7 @@ public class Pedidos : MonoBehaviour
 
     //variable para tiempo y limite de cuanto va llegarxd
     public float tiempo;
-    public float limite;
+    public float limiteDeTiempo;
 
     //variable para saber que orden va pedir y para saber que orden pidio la anterior vez
     public int receta;
@@ -18,6 +18,8 @@ public class Pedidos : MonoBehaviour
 
     //variable que funciona cuando termine de pensar la orden 
     public bool terminado;
+
+    public Receta [] recetas;
 
     private void Start()
     {
@@ -39,7 +41,7 @@ public class Pedidos : MonoBehaviour
         {
             IndicarPedido();
             tiempo += 1 * Time.deltaTime;
-            if (tiempo >= limite)
+            if (tiempo >= limiteDeTiempo)
             {
                 terminado = true;
                 tiempo = 0;
@@ -51,7 +53,6 @@ public class Pedidos : MonoBehaviour
     public void IndicarPedido()
     {
         receta = Random.Range(1, 13);
-
         //los siguientes if funcionaba para que no eligiera lo mismo dos veces seguidas pero ya no funciona a menos que sea 3 ordenes xd
         if (receta == guardarReceta && receta >= 1 && receta <= 6)
         {
