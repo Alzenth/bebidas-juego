@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1860ea8ed138b3b46b5266d79aea7f4f, type: 3}
-  m_Name: batido2
+  m_Name: 1-4
   m_EditorClassIdentifier: 
-  name: 
+  name: Batido de fresa
+  textoPedido: "Un batido de fresa mediano, si no es mucha molestia\r.\n"
   fresa: 2
   naranja: 0
   "pi\xF1a": 0
@@ -22,3 +23,4 @@ MonoBehaviour:
   granadilla: 0
   leche: 1
   tipoDeBebida: 2
+  "tama\xF1oDeBebida": 1

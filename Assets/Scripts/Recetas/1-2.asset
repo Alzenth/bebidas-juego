@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1860ea8ed138b3b46b5266d79aea7f4f, type: 3}
-  m_Name: clasico2
+  m_Name: 1-2
   m_EditorClassIdentifier: 
-  name: 
+  name: Especial de mango
+  textoPedido: "Quisiera un especial de mango grande\r."
   fresa: 0
-  naranja: 3
+  naranja: 0
   "pi\xF1a": 0
   papaya: 0
   platano: 0
-  mango: 0
+  mango: 3
   granadilla: 0
   leche: 0
-  tipoDeBebida: 0
+  tipoDeBebida: 1
+  "tama\xF1oDeBebida": 2

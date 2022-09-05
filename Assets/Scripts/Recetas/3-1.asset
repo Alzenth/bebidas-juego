@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1860ea8ed138b3b46b5266d79aea7f4f, type: 3}
-  m_Name: especial2
+  m_Name: 3-1
   m_EditorClassIdentifier: 
-  name: 
+  name: Surtido dulce
+  textoPedido: "Buenas, quisiera un surtido dulce de tama\xF1o grande por favor\r.\n"
   fresa: 1
-  naranja: 0
-  "pi\xF1a": 1
-  papaya: 1
+  naranja: 1
+  "pi\xF1a": 0
+  papaya: 0
   platano: 1
   mango: 0
   granadilla: 0
   leche: 0
-  tipoDeBebida: 1
+  tipoDeBebida: 0
+  "tama\xF1oDeBebida": 2
