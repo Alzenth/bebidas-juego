@@ -8,16 +8,18 @@ public class BebidaActual : MonoBehaviour
     public static int fresaCantidad, naranjaCantidad, piñaCantidad, papayaCantidad, platanoCantidad, mangocantidad, granadillaCantidad, lecheCantidad;
     public enum TipoDeBebida
     {
+        Ninguno,
         Clásicos,
         Especiales,
-        Batidos
+        Batidos        
     }
     public static TipoDeBebida tipoDeBebida;
     public enum TamañoDeBebida
     {
+        Ninguno,
         Pequeño,
         Mediano,
-        Grande
+        Grande        
     }
     public static TamañoDeBebida tamañoDeBebida;
 
@@ -47,5 +49,32 @@ public class BebidaActual : MonoBehaviour
             " Leche: "+lecheCantidad+
             " Tipo: "+ tipoDeBebida+
             " Tamaño: "+tamañoDeBebida;
+    }
+    public static void ReiniciarIngredientes()
+    {
+        fresaCantidad = 0;
+        naranjaCantidad = 0;
+        piñaCantidad = 0;
+        papayaCantidad = 0;
+        platanoCantidad = 0;
+        mangocantidad = 0;
+        granadillaCantidad = 0;
+        lecheCantidad = 0;
+    }
+    public static void ReiniciarMezcla()
+    {
+        ControladorBebida.numeroDeClics = 0;
+    }
+
+    public static void ReiniciarTamaño()
+    {
+        tamañoDeBebida = TamañoDeBebida.Ninguno;
+    }
+
+    public static void ReiniciarIntento()
+    {
+        ReiniciarIngredientes();
+        ReiniciarMezcla();
+        ReiniciarTamaño();
     }
 }
