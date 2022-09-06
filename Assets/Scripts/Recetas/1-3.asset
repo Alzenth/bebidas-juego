@@ -23,4 +23,6 @@ MonoBehaviour:
   granadilla: 0
   leche: 0
   tipoDeBebida: 0
+  tipoDEBebidaString: "Cl\xE1sicos"
   "tama\xF1oDeBebida": 0
+  "tama\xF1oDEBebida": "Peque\xF1o"

@@ -41,7 +41,7 @@ public class Ingredientes : MonoBehaviour
                 break;
 
             case LosIngredientes.mango:
-                BebidaActual.mangocantidad++;
+                BebidaActual.mangoCantidad++;
                 break;
 
             case LosIngredientes.granadilla:

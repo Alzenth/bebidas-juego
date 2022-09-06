@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BebidaActual : MonoBehaviour
 {
-    public static int fresaCantidad, naranjaCantidad, piñaCantidad, papayaCantidad, platanoCantidad, mangocantidad, granadillaCantidad, lecheCantidad;
+    public static int fresaCantidad, naranjaCantidad, piñaCantidad, papayaCantidad, platanoCantidad, mangoCantidad, granadillaCantidad, lecheCantidad;
     public enum TipoDeBebida
     {
         Ninguno,
@@ -35,16 +35,13 @@ public class BebidaActual : MonoBehaviour
 
 
 
-
-
-
         texto.text = "Datos de la bebida actual"+
             " Fresa: "+fresaCantidad+
             " Leche: "+naranjaCantidad+
             " Piña: "+piñaCantidad+
             " Papaya: "+papayaCantidad+
             " Platano: "+platanoCantidad+
-            " Mango: "+mangocantidad+
+            " Mango: "+mangoCantidad+
             " Granadilla: "+granadillaCantidad+
             " Leche: "+lecheCantidad+
             " Tipo: "+ tipoDeBebida+
@@ -57,7 +54,7 @@ public class BebidaActual : MonoBehaviour
         piñaCantidad = 0;
         papayaCantidad = 0;
         platanoCantidad = 0;
-        mangocantidad = 0;
+        mangoCantidad = 0;
         granadillaCantidad = 0;
         lecheCantidad = 0;
     }

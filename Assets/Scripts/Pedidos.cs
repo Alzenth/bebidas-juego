@@ -6,15 +6,20 @@ using UnityEngine.UI;
 public class Pedidos : MonoBehaviour
 {
     //texto
-    public Text orden;
+    public Text ordenTexto;
 
     //variable para tiempo y limite de cuanto va llegarxd
     public float tiempo;
     public float limiteDeTiempo;
 
     //variable para saber que orden va pedir y para saber que orden pidio la anterior vez
-    public int receta;
+    public static int recetaOrden = 1;
     public int guardarReceta;
+    public static string mezcla;
+    public static int fresa, naranja, piña, papaya, platano, mango, granadilla, leche;
+    public string mezcla2;
+    public static string tamaño;
+    public string tamaño2;
 
     //variable que funciona cuando termine de pensar la orden 
     public bool terminado;
@@ -28,6 +33,9 @@ public class Pedidos : MonoBehaviour
 
     private void Update()
     {
+        tamaño2 = tamaño;
+        mezcla2 = mezcla;
+        IndicarPedido();
         /*
         tiempo += 1 * Time.deltaTime;
 
@@ -52,6 +60,8 @@ public class Pedidos : MonoBehaviour
     //metodo para elegir la orden aleatoriamente
     public void IndicarPedido()
     {
+        #region random
+        /*
         receta = Random.Range(1, 13);
         //los siguientes if funcionaba para que no eligiera lo mismo dos veces seguidas pero ya no funciona a menos que sea 3 ordenes xd
         if (receta == guardarReceta && receta >= 1 && receta <= 6)
@@ -107,5 +117,183 @@ public class Pedidos : MonoBehaviour
         }
 
         guardarReceta = receta;
+        */
+
+        #endregion
+
+        switch(recetaOrden)
+        {
+            case 1:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
+
+                break;
+            case 2:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
+                break;
+            case 3:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
+                break;
+            case 4:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
+                break;
+            case 5:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
+                break;
+            case 6:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
+                break;
+            case 7:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
+                break;
+            case 8:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
+                break;
+            case 9:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
+                break;
+            case 10:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
+                break;
+            case 11:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
+                break;
+            case 12:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
+                break;
+            case 13:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
+                break;
+        }
     }
+
 }

@@ -11,7 +11,6 @@ public class Receta : ScriptableObject
     [TextArea(3, 15)]
     public string textoPedido;
     public int fresa, naranja, piña, papaya, platano, mango, granadilla, leche;
-
     public enum TipoDeBebida
     {
         Clásicos,
@@ -19,12 +18,14 @@ public class Receta : ScriptableObject
         Batidos
     }
     public TipoDeBebida tipoDeBebida;
-    
-     public enum TamañoDeBebida
+    public string tipoDEBebidaString ;
+
+    public enum TamañoDeBebida
     {
         Pequeño,
         Mediano,
         Grande
     }
     public TamañoDeBebida tamañoDeBebida;
+    public string tamañoDEBebida ;
 }

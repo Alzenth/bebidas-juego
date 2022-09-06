@@ -23,4 +23,6 @@ MonoBehaviour:
   granadilla: 0
   leche: 0
   tipoDeBebida: 1
+  tipoDEBebidaString: Especiales
   "tama\xF1oDeBebida": 1
+  "tama\xF1oDEBebida": Mediano

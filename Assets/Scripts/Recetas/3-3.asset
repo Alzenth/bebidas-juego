@@ -23,4 +23,6 @@ MonoBehaviour:
   granadilla: 1
   leche: 0
   tipoDeBebida: 1
+  tipoDEBebidaString: Especiales
   "tama\xF1oDeBebida": 2
+  "tama\xF1oDEBebida": Grande

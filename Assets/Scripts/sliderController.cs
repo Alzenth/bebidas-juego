@@ -18,17 +18,8 @@ public class sliderController : MonoBehaviour
     //variable para saber si se detiene el slider
     public bool detenerse;
 
-    private void Start()
-    {
-    }
     private void Update()
     {
-        //if para detener la barra cuando presionas X
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            detenerse = true;
-            valor = this.GetComponent<Slider>().value;
-        }
         if (detenerse == true)
         {
             //this.GetComponent<Slider>().wholeNumbers = true;
@@ -85,5 +76,11 @@ public class sliderController : MonoBehaviour
             }
         }
         
+    }
+
+    public void Detener()
+    {
+        detenerse = true;
+        valor = this.GetComponent<Slider>().value;
     }
 }
