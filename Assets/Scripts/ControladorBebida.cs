@@ -8,20 +8,28 @@ public class ControladorBebida : MonoBehaviour
     [Header("Gameplay")]
     public GameObject ordenTexto;
     public GameObject botonDeSiguiente;
-    public Receta[] recetaCopias;
-
+    public GameObject[] corazones;
+    public Pasar pasar;
     public GameObject reintentar;
     public bool fallido = false;
     public int fresaNecesaria, naranjaNecesaria, piñaNecesaria, papayaNecesaria, platanoNecesaria, mangoNecesaria, granadillaNecesaria, lecheNecesaria;
-    
+
     public string tipoDeBebidaNecesaria;
 
     public string tamañoDeBebidaNecesaria;
 
+    //public Text textVidas;
     public int intentos;
     public int numeroArreglo;
 
     public int faseActual;
+
+    public int nivelActual;
+    public int recetasContadas;
+    public Pedidos pedidos;
+    public bool globoDesaparece;
+
+    public ControladorPersonajes controladorPersonajes;
 
     [Header("Fase 1")]
     public GameObject[] ingredientes;
@@ -45,13 +53,33 @@ public class ControladorBebida : MonoBehaviour
 
     private void Start()
     {
+        NivelActual();
         intentos = 2;
-
         faseActual = 1;
+        recetasContadas = 1;
+        controladorPersonajes.nivelSgt = 1;
+        numeroArreglo = 0;
     }
 
     private void Update()
     {
+        if (intentos == 2)
+        {
+            corazones[0].SetActive(true);
+            corazones[1].SetActive(true);
+        }
+        if (intentos == 1)
+        {
+            corazones[0].SetActive(true);
+            corazones[1].SetActive(false);
+        }
+        if (intentos == 0)
+        {
+            corazones[0].SetActive(false);
+            corazones[1].SetActive(false);
+        }
+
+        //textVidas.text = intentos.ToString();
 
         fresaNecesaria = ordenTexto.GetComponent<Pedidos>().recetas[numeroArreglo].fresa;
         naranjaNecesaria = ordenTexto.GetComponent<Pedidos>().recetas[numeroArreglo].naranja;
@@ -61,7 +89,6 @@ public class ControladorBebida : MonoBehaviour
         mangoNecesaria = ordenTexto.GetComponent<Pedidos>().recetas[numeroArreglo].mango;
         granadillaNecesaria = ordenTexto.GetComponent<Pedidos>().recetas[numeroArreglo].granadilla;
         lecheNecesaria = ordenTexto.GetComponent<Pedidos>().recetas[numeroArreglo].leche;
-        copia = numeroDeClics;
         #region FASE 1
         if (sumaDeIngredientes == 4)
         {
@@ -114,7 +141,7 @@ public class ControladorBebida : MonoBehaviour
         }
         if (numeroDeClics < 3)
         {
-            BebidaActual.tipoDeBebida = BebidaActual.TipoDeBebida.Ninguno;
+            BebidaActual.tipoDeBebida = BebidaActual.TipoDeBebida.Clásicos;
         }
         #endregion
         #region FASE 3
@@ -152,12 +179,12 @@ public class ControladorBebida : MonoBehaviour
             Pedidos.recetaOrden = 1;
         }
     }
-
     //metodo que los botones ocupan para dar un valor cada que se presiona no sirve para nd mas 
     public void Pulsacion()//Fase 1
     {
         sumaDeIngredientes += 1;
     }
+
     public void PulsacionMezcla()//Fase 2
     {
         numeroDeClics += 1;
@@ -195,6 +222,7 @@ public class ControladorBebida : MonoBehaviour
                 botonDeMezclar.GetComponent<Button>().interactable = true;
 
                 botonDeMezclar.transform.eulerAngles = new Vector3(0, 0, 0);
+
                 botonDeSiguiente.GetComponentInChildren<Text>().text = "Siguiente";
 
                 botonDeReintentarFase1.SetActive(false);
@@ -251,6 +279,25 @@ public class ControladorBebida : MonoBehaviour
         }
     }
 
+    public void NivelActual()
+    {
+        if (recetasContadas < 4)
+        {
+           controladorPersonajes.nivelSgt = 1;
+        }
+        
+        if (recetasContadas >= 4 && recetasContadas < 8)
+        {
+            nivelActual = 2;
+            controladorPersonajes.nivelSgt = 2;
+        }
+        if (recetasContadas >= 8 && recetasContadas < 13)
+        {
+            nivelActual = 3;
+            controladorPersonajes.nivelSgt = 3;
+        }
+    }
+
     public void ReintentarFase1()
     {
         sumaDeIngredientes = 0;
@@ -269,6 +316,8 @@ public class ControladorBebida : MonoBehaviour
     public void SiguienteOrden()
     {
         faseActual = 0;
+        recetasContadas++;
+        pasar.Siguiente();
         numeroDeClics = 0;
         sumaDeIngredientes = 0;
         BebidaActual.ReiniciarIntento();
@@ -277,6 +326,8 @@ public class ControladorBebida : MonoBehaviour
         tamañoVaso = 0;
         Pedidos.recetaOrden++;
         numeroArreglo++;
+        globoDesaparece = false;
+        NivelActual();
     }
     public void Girar()
     {
@@ -295,120 +346,56 @@ public class ControladorBebida : MonoBehaviour
         if (fresaNecesaria != Pedidos.fresa)
         {
             fallido = true;
-            Debug.Log("ing");
+            Debug.Log("fresa");
         }
         if (naranjaNecesaria != Pedidos.naranja)
         {
             fallido = true;
-            Debug.Log("ing");
+            Debug.Log("naranja");
         }
         if (piñaNecesaria != Pedidos.piña)
         {
             fallido = true;
-            Debug.Log("ing");
+            Debug.Log("piña");
         }
         if (papayaNecesaria != Pedidos.papaya)
         {
             fallido = true;
-            Debug.Log("ing");
+            Debug.Log("papaya");
         }
         if (platanoNecesaria != Pedidos.platano)
         {
             fallido = true;
-            Debug.Log("ing");
+            Debug.Log("platano");
         }
         if (mangoNecesaria != Pedidos.mango)
         {
             fallido = true;
-            Debug.Log("ing");
+            Debug.Log("mango");
         }
         if (granadillaNecesaria != Pedidos.granadilla)
         {
             fallido = true;
-            Debug.Log("ing");
+            Debug.Log("granadilla");
         }
         if (lecheNecesaria != Pedidos.leche)
         {
             fallido = true;
-            Debug.Log("ing");
+            Debug.Log("leche");
         }
         if (tipoDeBebidaNecesaria != Pedidos.mezcla)
         {
             fallido = true;
-            Debug.Log("meezcla");
+            Debug.Log("mezcla");
         }
         if (tamañoDeBebidaNecesaria != Pedidos.tamaño)
         {
             fallido = true; Debug.Log("tama");
         }
-        
-
         if (fallido == true)
         {
             intentos--;
         }
         SiguienteOrden();
-
-        /*
-        //tipoDeBebidaNecesaria = ordenTexto.GetComponent<Pedidos>().recetas[Pedidos.recetaOrden].tipoDeBebida;
-
-        for (int i = 0; i < ordenTexto.GetComponent<Pedidos>().recetas.Length; i++)
-        {
-            recetaCopias[i] = ordenTexto.GetComponent<Pedidos>().recetas[i];
-        }
-        fresaNecesaria = recetaCopias[numeroArreglo].fresa;
-        naranjaNecesaria = ordenTexto.GetComponent<Pedidos>().recetas[2].naranja;
-        piñaNecesaria = ordenTexto.GetComponent<Pedidos>().recetas[2].piña;
-        papayaNecesaria = ordenTexto.GetComponent<Pedidos>().recetas[2].papaya;
-        platanoNecesaria = ordenTexto.GetComponent<Pedidos>().recetas[2].platano;
-        mangoNecesaria = ordenTexto.GetComponent<Pedidos>().recetas[2].mango;
-        granadillaNecesaria = ordenTexto.GetComponent<Pedidos>().recetas[2].granadilla;
-        lecheNecesaria = ordenTexto.GetComponent<Pedidos>().recetas[numeroArreglo].leche;
-        /*
-    }
-    /*
-    switch (Pedidos.recetaOrden)
-    {
-        case 1:
-            fresaCantidad = BebidaActual.fresaCantidad;
-            break;
-        case 2:
-            ordenTexto.text = recetas[1].textoPedido;
-            break;
-        case 3:
-            ordenTexto.text = recetas[2].textoPedido;
-            break;
-        case 4:
-            ordenTexto.text = recetas[3].textoPedido;
-            break;
-        case 5:
-            ordenTexto.text = recetas[4].textoPedido;
-            break;
-        case 6:
-            ordenTexto.text = recetas[5].textoPedido;
-            break;
-        case 7:
-            ordenTexto.text = recetas[6].textoPedido;
-            break;
-        case 8:
-            ordenTexto.text = recetas[7].textoPedido;
-            break;
-        case 9:
-            ordenTexto.text = recetas[8].textoPedido;
-            break;
-        case 10:
-            ordenTexto.text = recetas[9].textoPedido;
-            break;
-        case 11:
-            ordenTexto.text = recetas[10].textoPedido;
-            break;
-        case 12:
-            ordenTexto.text = recetas[11].textoPedido;
-            break;
-        case 13:
-            ordenTexto.text = recetas[12].textoPedido;
-            break;
-    }
-    */
     }
 }

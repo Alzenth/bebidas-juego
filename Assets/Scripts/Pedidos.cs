@@ -8,34 +8,44 @@ public class Pedidos : MonoBehaviour
     //texto
     public Text ordenTexto;
 
+    public float suavizado;
+    public GameObject globoAlfa;
+    public GameObject textoAlfa;
+    public bool empieza;
+
     //variable para tiempo y limite de cuanto va llegarxd
     public float tiempo;
     public float limiteDeTiempo;
 
     //variable para saber que orden va pedir y para saber que orden pidio la anterior vez
-    public static int recetaOrden = 1;
+    public static int recetaOrden = 0;
     public int guardarReceta;
     public static string mezcla;
     public static int fresa, naranja, piña, papaya, platano, mango, granadilla, leche;
     public string mezcla2;
     public static string tamaño;
     public string tamaño2;
+    public int a;
 
     //variable que funciona cuando termine de pensar la orden 
     public bool terminado;
 
     public Receta [] recetas;
+    public ControladorBebida controladorBebida;
 
     private void Start()
     {
-        IndicarPedido();
+        empieza = true;
     }
 
     private void Update()
     {
+        a = recetaOrden;
+        Debug.Log(a);
         tamaño2 = tamaño;
         mezcla2 = mezcla;
         IndicarPedido();
+
         /*
         tiempo += 1 * Time.deltaTime;
 
@@ -55,6 +65,46 @@ public class Pedidos : MonoBehaviour
                 tiempo = 0;
             }
         }
+    }
+
+    public void ApareceGloboTexto()
+    {
+        var alphaGlobo = globoAlfa.GetComponent<RawImage>().color;
+
+        var alphaTexto = textoAlfa.GetComponent<Text>().color;
+
+        alphaGlobo.a = Mathf.Lerp(alphaGlobo.a, 1f, suavizado * Time.deltaTime);
+
+        alphaTexto.a = Mathf.Lerp(alphaTexto.a,1f, suavizado * Time.deltaTime);
+
+        if (alphaGlobo.a >= 0.9f)
+        {
+            alphaTexto.a = 1f;
+            alphaGlobo.a = 1f;
+        }
+        Debug.Log(alphaGlobo);
+        globoAlfa.GetComponent<RawImage>().color = alphaGlobo;
+        textoAlfa.GetComponent<Text>().color = alphaTexto;
+    }
+
+    public void DesaparecerGloboTexto()
+    {
+        var alphaGlobo = globoAlfa.GetComponent<RawImage>().color;
+
+        var alphaTexto = textoAlfa.GetComponent<Text>().color;
+
+        alphaGlobo.a = Mathf.Lerp(alphaGlobo.a,0f, suavizado * Time.deltaTime);
+
+        alphaTexto.a = Mathf.Lerp(alphaTexto.a, 0f, suavizado * Time.deltaTime);
+
+        if (alphaGlobo.a <= 0.1f)
+        {
+            alphaTexto.a = 0f;
+            alphaGlobo.a = 0f;
+        }
+        Debug.Log(alphaGlobo);
+        globoAlfa.GetComponent<RawImage>().color = alphaGlobo;
+        textoAlfa.GetComponent<Text>().color = alphaTexto;
     }
 
     //metodo para elegir la orden aleatoriamente
@@ -123,7 +173,7 @@ public class Pedidos : MonoBehaviour
 
         switch(recetaOrden)
         {
-            case 1:
+            case 0:
                 ordenTexto.text = recetas[recetaOrden].textoPedido;
                 mezcla = recetas[recetaOrden].tipoDEBebidaString;
                 tamaño = recetas[recetaOrden].tamañoDEBebida;
@@ -136,6 +186,19 @@ public class Pedidos : MonoBehaviour
                 granadilla = recetas[recetaOrden].granadilla;
                 leche = recetas[recetaOrden].leche;
 
+                break;
+            case 1:
+                ordenTexto.text = recetas[recetaOrden].textoPedido;
+                mezcla = recetas[recetaOrden].tipoDEBebidaString;
+                tamaño = recetas[recetaOrden].tamañoDEBebida;
+                fresa = recetas[recetaOrden].fresa;
+                naranja = recetas[recetaOrden].naranja;
+                piña = recetas[recetaOrden].piña;
+                papaya = recetas[recetaOrden].papaya;
+                platano = recetas[recetaOrden].platano;
+                mango = recetas[recetaOrden].mango;
+                granadilla = recetas[recetaOrden].granadilla;
+                leche = recetas[recetaOrden].leche;
                 break;
             case 2:
                 ordenTexto.text = recetas[recetaOrden].textoPedido;
@@ -268,19 +331,6 @@ public class Pedidos : MonoBehaviour
                 leche = recetas[recetaOrden].leche;
                 break;
             case 12:
-                ordenTexto.text = recetas[recetaOrden].textoPedido;
-                mezcla = recetas[recetaOrden].tipoDEBebidaString;
-                tamaño = recetas[recetaOrden].tamañoDEBebida;
-                fresa = recetas[recetaOrden].fresa;
-                naranja = recetas[recetaOrden].naranja;
-                piña = recetas[recetaOrden].piña;
-                papaya = recetas[recetaOrden].papaya;
-                platano = recetas[recetaOrden].platano;
-                mango = recetas[recetaOrden].mango;
-                granadilla = recetas[recetaOrden].granadilla;
-                leche = recetas[recetaOrden].leche;
-                break;
-            case 13:
                 ordenTexto.text = recetas[recetaOrden].textoPedido;
                 mezcla = recetas[recetaOrden].tipoDEBebidaString;
                 tamaño = recetas[recetaOrden].tamañoDEBebida;

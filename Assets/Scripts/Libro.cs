@@ -9,14 +9,14 @@ public class Libro : MonoBehaviour
 
     public void Iluminate()
     {
-            libro.SetActive(true);
+        libro.SetActive(true);
         boton.SetActive(true);
         this.gameObject.SetActive(false);
         
     }
     public void Apagate()
     {
-            libro.SetActive(false);
+        libro.SetActive(false);
         boton.SetActive(true);
         this.gameObject.SetActive(false);
 

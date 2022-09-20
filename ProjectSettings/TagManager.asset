@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ManaguerPersonajes
+  - PosicionA
+  - PosicionB
+  - PosicionC
+  - Persona
+  - PosicionD
   layers:
   - Default
   - TransparentFX
