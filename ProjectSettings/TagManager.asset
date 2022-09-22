@@ -5,16 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - ManaguerPersonajes
-  - PosicionA
-  - PosicionB
-  - PosicionC
-  - Persona
-  - PosicionD
+  - Person
+  - TargetC
+  - TargetB
+  - TargetA
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Personas
   - Water
   - UI
   - 

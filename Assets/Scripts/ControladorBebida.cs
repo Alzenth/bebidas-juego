@@ -20,7 +20,7 @@ public class ControladorBebida : MonoBehaviour
 
     //public Text textVidas;
     public int intentos;
-    public int numeroArreglo;
+    public int numeroArreglo = 0;
 
     public int faseActual;
 
@@ -58,6 +58,9 @@ public class ControladorBebida : MonoBehaviour
         faseActual = 1;
         recetasContadas = 1;
         controladorPersonajes.nivelSgt = 1;
+    }
+    private void Awake()
+    {
         numeroArreglo = 0;
     }
 
