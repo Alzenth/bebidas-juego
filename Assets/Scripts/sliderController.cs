@@ -38,19 +38,6 @@ public class sliderController : MonoBehaviour
                     break;
 
             }
-           /* if (this.GetComponent<Slider>().value >= 0f && this.GetComponent<Slider>().value <= 20f)
-            {
-                Debug.Log("A");
-            }
-            if (this.GetComponent<Slider>().value >= 21f && this.GetComponent<Slider>().value <= 40f)
-            {
-                Debug.Log("B");
-            }
-            if (this.GetComponent<Slider>().value >= 41f && this.GetComponent<Slider>().value <= 60f)
-            {
-                Debug.Log("C");
-            }
-           */
         }
         else if(detenerse == false)
         {

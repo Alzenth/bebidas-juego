@@ -55,11 +55,16 @@ public class ControllerUI : MonoBehaviour
     [Header("Phase 2")]
     public GameObject buttonMix;
 
-    public static int numeroDeClics;
+    public int mixClicks;
+    public string typeDrink;
     public int copia;
     public float rotVelo;
 
     [Header("Phase 3")]
+    public float value;
+    public float multiply;
+    public bool pause, loop;
+    public GameObject slider;
     public GameObject botonDeServir;
     public GameObject buttonSize;
 
@@ -76,7 +81,7 @@ public class ControllerUI : MonoBehaviour
     }
     private void Awake()
     {
-        Phases();
+        CheckPhases();
     }
 
     public void DisappearBalloonText()
@@ -112,9 +117,9 @@ public class ControllerUI : MonoBehaviour
         {
             alphaText.a = 1f;
             alphaBallon.a = 1f;
-            Phase1();
+            Phases();
         }
-        Debug.Log(alphaBallon);
+       // Debug.Log(alphaBallon);
         ballonAlpha.GetComponent<RawImage>().color = alphaBallon;
         textAlpha.GetComponent<Text>().color = alphaText;
     }
@@ -131,7 +136,12 @@ public class ControllerUI : MonoBehaviour
         else 
         {
             PopUpBallonText(); 
-            Phase1();
+            Phases();
+            if (start)
+            {
+                CheckPhases();
+                start = false;
+            }
         }
     }
 
@@ -147,7 +157,7 @@ public class ControllerUI : MonoBehaviour
         milk = recipe[numberList].milk;
     }
 
-    public void Phases()
+    public void CheckPhases()
     {
         phaseCurrent++;
         switch (phaseCurrent)
@@ -165,6 +175,8 @@ public class ControllerUI : MonoBehaviour
                 buttonNext.SetActive(false);
 
                 buttonResetPhase1.SetActive(false);
+
+                slider.SetActive(false);
                 break;
 
             case 1:
@@ -178,13 +190,19 @@ public class ControllerUI : MonoBehaviour
 
                 buttonSize.SetActive(false);
 
+                buttonResetPhase1.SetActive(false);
                 break;
 
             case 2:
+
                 for (int i = 0; i < ingredientsButtons.Length; ++i)
                 {
                     ingredientsButtons[i].SetActive(false);
                 }
+
+                buttonNext.SetActive(false);
+
+                buttonResetPhase1.SetActive(false);
 
                 buttonMix.SetActive(true);
 
@@ -197,50 +215,127 @@ public class ControllerUI : MonoBehaviour
                     ingredientsButtons[i].SetActive(false);
                 }
 
+                slider.SetActive(true);
+
                 buttonMix.SetActive(false);
 
                 buttonSize.SetActive(true);
                 break;
         }
     }
-    public void Phase1()
+    public void Phases()
     {
-        if (start)
+        if (phaseCurrent == 1)
         {
-            Phases();
-            start = false;
-        }
-
-        if (ingredientsEntered == 4)
-        {
-            for (int i = 0; i < ingredientsButtons.Length; ++i)
+            if (ingredientsEntered == 4)
             {
-                ingredientsButtons[i].GetComponentInChildren<Button>().interactable = false;
+                for (int i = 0; i < ingredientsButtons.Length; ++i)
+                {
+                    ingredientsButtons[i].GetComponentInChildren<Button>().interactable = false;
+                }
+            }
+            if (ingredientsEntered >= 3)
+            {
+                buttonNext.SetActive(true);
+                buttonResetPhase1.SetActive(true);
+
+            }
+            else
+            {
+                for (int i = 0; i < ingredientsButtons.Length; ++i)
+                {
+                    ingredientsButtons[i].GetComponentInChildren<Button>().interactable = true;
+                }
+                buttonNext.SetActive(false);
+                buttonResetPhase1.SetActive(false);
             }
         }
-        if (ingredientsEntered >= 3)
-        {
-            buttonNext.SetActive(true);
-            buttonResetPhase1.SetActive(true);
 
-        }
-        else
+        if (phaseCurrent == 2)
         {
-            for (int i = 0; i < ingredientsButtons.Length; ++i)
+            if (mixClicks >= 3 && mixClicks <= 7)
             {
-                ingredientsButtons[i].GetComponentInChildren<Button>().interactable = true;
+                buttonNext.SetActive(true);
             }
-            buttonNext.SetActive(false);
-            buttonResetPhase1.SetActive(false);
+            if (mixClicks >= 3 && mixClicks < 4)
+            {
+                //clasico
+                typeDrink = "Classic";
+            }
+            if (mixClicks >= 4 && mixClicks < 7)
+            {
+                //especial
+                typeDrink = "Specials";
+            }
+            if (mixClicks >= 7)
+            {
+                //batido
+                typeDrink = "Cream";
+                buttonMix.GetComponent<Button>().interactable = false;
+            }
+            if (mixClicks < 3)
+            {
+                typeDrink = "Classic";
+            }
+        }
+
+        if (phaseCurrent == 3)
+        {
+            if (pause)
+            {
+                switch (value)
+                {
+                    case float n when (n >= 0 && n <= 20):
+                        Debug.Log("Pequeño");
+                        break;
+
+                    case float n when (n >= 21 && n <= 40):
+                        Debug.Log("Mediano");
+                        break;
+
+                    case float n when (n >= 41 && n <= 60):
+                        Debug.Log("Largo");
+                        break;
+                }
+            }
+            else
+            {
+                if (loop == false)
+                {
+                    slider.GetComponent<Slider>().value = slider.GetComponent<Slider>().value + multiply * Time.deltaTime;
+                }
+
+                else if (loop == true)
+                {
+                    slider.GetComponent<Slider>().value = slider.GetComponent<Slider>().value - multiply * Time.deltaTime;
+                }
+
+                if (slider.GetComponent<Slider>().value == slider.GetComponent<Slider>().minValue)
+                {
+                    loop = false;
+                }
+                else if (slider.GetComponent<Slider>().value == slider.GetComponent<Slider>().maxValue)
+                {
+                    loop = true;
+
+                }
+            }
         }
     }
-
+    public void Stop()
+    {
+        pause = true;
+        value = slider.GetComponent<Slider>().value;
+    }
     public void Pulsation()
     {
         switch (phaseCurrent)
         {
             case 1:
                 ingredientsEntered++;
+                break;
+            case 2:
+                mixClicks++;
                 break;
         }
     }

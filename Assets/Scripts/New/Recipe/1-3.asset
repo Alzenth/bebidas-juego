@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2bc85b4dd31df4897b80cd551885a5, type: 3}
   m_Name: 1-3
   m_EditorClassIdentifier: 
-  name: 
-  textoPedido: 
+  name: "Jugo de pi\xF1a"
+  textoPedido: "Un jugo de pi\xF1a peque\xF1o, por favor\r."
   strawBerry: 0
   orange: 0
-  pineapple: 0
+  pineapple: 3
   papaya: 0
   banana: 0
   mango: 0
   granadilla: 0
   milk: 0
-  typeDrink: 
-  sizeDrink: 
+  typeDrink: Classic
+  sizeDrink: small

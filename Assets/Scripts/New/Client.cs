@@ -7,7 +7,7 @@ public class Client : MonoBehaviour
     public enum StateClient{
         Ninguno,
         AdvancePosition,
-        organize,
+        order,
         preparing,
         checkOrder,
         next
@@ -70,7 +70,8 @@ public class Client : MonoBehaviour
 
                 if (transform.position.x == targets[2].transform.position.x)
                 {
-                    nextA = true;
+                   nextA = true;
+                   stateClient  = StateClient.preparing;
                 }
             }
             /*
