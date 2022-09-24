@@ -6,6 +6,7 @@ public class Client : MonoBehaviour
 {
     public enum StateClient{
         Ninguno,
+        Wait,
         AdvancePosition,
         order,
         preparing,
@@ -25,6 +26,8 @@ public class Client : MonoBehaviour
 
     public bool nextC,nextB, nextA;
 
+    public bool end;
+
     private void Awake()
     {
         this.GetComponent<SpriteRenderer>().sprite = Skin[Random.Range(0, 2)];
@@ -32,6 +35,7 @@ public class Client : MonoBehaviour
         location = this.transform.position.x;
 
         stateClient = StateClient.AdvancePosition;
+
     }
 
     void Start()
@@ -99,6 +103,14 @@ public class Client : MonoBehaviour
             }
             */
         }
+        if (end)
+        {
+            stateClient = StateClient.next;
+        }
+        if (stateClient == StateClient.next)
+        {
+           StartCoroutine(Move(transform.position, 3));
+        }
     }
 
     IEnumerator Move(Vector2 position, int i)
@@ -125,6 +137,10 @@ public class Client : MonoBehaviour
         if (collision.CompareTag("TargetA"))
         {
             transform.position = targets[2].transform.position;
+        }
+        if (collision.CompareTag("TargetEnd"))
+        {
+            stateClient = StateClient.Wait;
         }
     }
 }

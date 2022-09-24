@@ -15,7 +15,7 @@ public class ControllerUI : MonoBehaviour
 
     public bool fail;
 
-    [HideInInspector]
+    //[HideInInspector]
     public int strawBerry,
         orange,
         pineapple,
@@ -24,6 +24,9 @@ public class ControllerUI : MonoBehaviour
         mango,
         granadilla,
         milk;
+    //[HideInInspector]
+    public string type,
+        size;
 
 
     public int strawBerryButton,
@@ -38,9 +41,11 @@ public class ControllerUI : MonoBehaviour
     public int level;
     public int life = 2;
     public int numberList;
+    public GameObject positionOrder;
     public GameObject retryGeneral;
     public GameObject gameOver;
     public GameObject buttonNext;
+    public ManaguerPosition managuerPosition;
 
     public int phaseCurrent;
     public bool start;
@@ -59,11 +64,14 @@ public class ControllerUI : MonoBehaviour
     public string typeDrink;
     public int copia;
     public float rotVelo;
+    public GameObject textMix;
 
     [Header("Phase 3")]
-    public float value;
+    public string sizeDrink;
+    private float value;
     public float multiply;
     public bool pause, loop;
+    public GameObject glass;
     public GameObject slider;
     public GameObject botonDeServir;
     public GameObject buttonSize;
@@ -76,7 +84,7 @@ public class ControllerUI : MonoBehaviour
 
     private void Update()
     {
-        CheckOrder();
+        DrinkOrder();
         CheckIngredients();
     }
     private void Awake()
@@ -123,7 +131,7 @@ public class ControllerUI : MonoBehaviour
         ballonAlpha.GetComponent<RawImage>().color = alphaBallon;
         textAlpha.GetComponent<Text>().color = alphaText;
     }
-    public void CheckOrder()
+    public void DrinkOrder()
     {
         if (ManaguerPosition.occupiedA == false)
         {
@@ -135,6 +143,7 @@ public class ControllerUI : MonoBehaviour
         }
         else 
         {
+            Debug.Log("asd");
             PopUpBallonText(); 
             Phases();
             if (start)
@@ -147,6 +156,7 @@ public class ControllerUI : MonoBehaviour
 
     public void CheckIngredients()
     {
+        orderText.text = recipe[numberList].textoPedido;
         strawBerry = recipe[numberList].strawBerry;
         orange = recipe[numberList].orange;
         pineapple = recipe[numberList].pineapple;
@@ -155,6 +165,8 @@ public class ControllerUI : MonoBehaviour
         mango = recipe[numberList].mango;
         granadilla = recipe[numberList].granadilla;
         milk = recipe[numberList].milk;
+        type = recipe[numberList].typeDrink;
+        size = recipe[numberList].sizeDrink;
     }
 
     public void CheckPhases()
@@ -177,6 +189,9 @@ public class ControllerUI : MonoBehaviour
                 buttonResetPhase1.SetActive(false);
 
                 slider.SetActive(false);
+                textMix.SetActive(false);
+
+                glass.SetActive(false);
                 break;
 
             case 1:
@@ -191,6 +206,7 @@ public class ControllerUI : MonoBehaviour
                 buttonSize.SetActive(false);
 
                 buttonResetPhase1.SetActive(false);
+
                 break;
 
             case 2:
@@ -206,6 +222,8 @@ public class ControllerUI : MonoBehaviour
 
                 buttonMix.SetActive(true);
 
+                textMix.SetActive(true);
+
                 buttonSize.SetActive(false);
                 break;
 
@@ -216,13 +234,78 @@ public class ControllerUI : MonoBehaviour
                 }
 
                 slider.SetActive(true);
+                glass.SetActive(true);
 
                 buttonMix.SetActive(false);
+                textMix.SetActive(false);
 
                 buttonSize.SetActive(true);
                 break;
+
+            case 4:
+                for (int i = 0; i < ingredientsButtons.Length; ++i)
+                {
+                    ingredientsButtons[i].GetComponentInChildren<Button>().interactable = false;
+                }
+
+                buttonMix.SetActive(false);
+
+                buttonSize.SetActive(false);
+
+                buttonNext.SetActive(false);
+
+                buttonResetPhase1.SetActive(false);
+
+                slider.SetActive(false);
+
+                glass.SetActive(false);
+                CheckOrder();
+                positionOrder.GetComponent<Position>().end = true;
+
+                break;
         }
     }
+
+    public void CheckOrder()
+    {
+        if (orangeButton != orange)
+        {
+            fail = true;
+        }
+        if (pineappleButton != pineapple)
+        {
+            fail = true;
+        }
+        if (papayaButton != papaya)
+        {
+            fail = true;
+        }
+        if (bananaButton != banana)
+        {
+            fail = true;
+        }
+        if (mangoButton != mango)
+        {
+            fail = true;
+        }
+        if (granadillaButton != granadilla)
+        {
+            fail = true;
+        }
+        if (milkButton != milk)
+        {
+            fail = true;
+        }
+        if (typeDrink != type)
+        {
+            fail = true;
+        }
+        if (sizeDrink != size)
+        {
+            fail = true;
+        }
+    }
+
     public void Phases()
     {
         if (phaseCurrent == 1)
@@ -261,21 +344,25 @@ public class ControllerUI : MonoBehaviour
             {
                 //clasico
                 typeDrink = "Classic";
+                textMix.GetComponent<Text>().text = typeDrink;
             }
             if (mixClicks >= 4 && mixClicks < 7)
             {
                 //especial
                 typeDrink = "Specials";
+                textMix.GetComponent<Text>().text = typeDrink;
             }
             if (mixClicks >= 7)
             {
                 //batido
                 typeDrink = "Cream";
+                textMix.GetComponent<Text>().text = typeDrink;
                 buttonMix.GetComponent<Button>().interactable = false;
             }
             if (mixClicks < 3)
             {
-                typeDrink = "Classic";
+                typeDrink = "Ninguno";
+                textMix.GetComponent<Text>().text = typeDrink;
             }
         }
 
@@ -286,15 +373,15 @@ public class ControllerUI : MonoBehaviour
                 switch (value)
                 {
                     case float n when (n >= 0 && n <= 20):
-                        Debug.Log("Pequeño");
+                        sizeDrink = "Small";
                         break;
 
                     case float n when (n >= 21 && n <= 40):
-                        Debug.Log("Mediano");
+                        sizeDrink = "Medium";
                         break;
 
                     case float n when (n >= 41 && n <= 60):
-                        Debug.Log("Largo");
+                        sizeDrink = "Large";
                         break;
                 }
             }

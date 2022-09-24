@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2bc85b4dd31df4897b80cd551885a5, type: 3}
   m_Name: 3-4
   m_EditorClassIdentifier: 
-  name: 
-  textoPedido: 
+  name: Batido de papaya
+  textoPedido: "Quiero un batido de papaya peque\xF1o, por favor\r."
   strawBerry: 0
   orange: 0
   pineapple: 0
-  papaya: 0
+  papaya: 2
   banana: 0
   mango: 0
   granadilla: 0
-  milk: 0
-  typeDrink: 
-  sizeDrink: 
+  milk: 1
+  typeDrink: Cream
+  sizeDrink: Small

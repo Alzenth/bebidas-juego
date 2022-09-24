@@ -9,6 +9,8 @@ TagManager:
   - TargetC
   - TargetB
   - TargetA
+  - Target0
+  - TargetEnd
   layers:
   - Default
   - TransparentFX

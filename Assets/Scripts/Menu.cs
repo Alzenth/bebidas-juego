@@ -10,9 +10,11 @@ public class Menu : MonoBehaviour
     public void OnMenuActivo()
     {
         boton.SetActive(true);
+        Time.timeScale = 0;
     }
     public void OnMenuDesactivo()
     {
         boton.SetActive(false);
+        Time.timeScale = 1;
     }
 }

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2bc85b4dd31df4897b80cd551885a5, type: 3}
   m_Name: 3-1
   m_EditorClassIdentifier: 
-  name: 
-  textoPedido: 
-  strawBerry: 0
-  orange: 0
+  name: Surtido dulce
+  textoPedido: "Buenas, quisiera un surtido dulce de tama\xF1o grande por favor\r."
+  strawBerry: 1
+  orange: 1
   pineapple: 0
   papaya: 0
-  banana: 0
+  banana: 1
   mango: 0
   granadilla: 0
   milk: 0
-  typeDrink: 
-  sizeDrink: 
+  typeDrink: Classic
+  sizeDrink: Large

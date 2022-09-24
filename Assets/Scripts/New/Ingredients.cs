@@ -46,7 +46,7 @@ public class Ingredients : MonoBehaviour
                 break;
 
             case TheIngredients.granadilla:
-                controllerUI.granadilla++;
+                controllerUI.granadillaButton++;
                 break;
 
             case TheIngredients.milk:
