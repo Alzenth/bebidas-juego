@@ -8,6 +8,7 @@ public class ControllerUI : MonoBehaviour
     public Text orderText;
     public GameObject ballonAlpha;
     public GameObject textAlpha;
+    public GameObject life1,life2;
 
     public List<Recipe> recipe = new List<Recipe>();
 
@@ -15,7 +16,7 @@ public class ControllerUI : MonoBehaviour
 
     public bool fail;
 
-    //[HideInInspector]
+   [HideInInspector]
     public int strawBerry,
         orange,
         pineapple,
@@ -24,11 +25,12 @@ public class ControllerUI : MonoBehaviour
         mango,
         granadilla,
         milk;
-    //[HideInInspector]
+    [HideInInspector]
     public string type,
         size;
 
 
+    [HideInInspector]
     public int strawBerryButton,
         orangeButton,
         pineappleButton,
@@ -86,6 +88,25 @@ public class ControllerUI : MonoBehaviour
     {
         DrinkOrder();
         CheckIngredients();
+        if (life == 2)
+        {
+            life1.SetActive(true);
+            life2.SetActive(true);
+        }
+        if (life == 1)
+        {
+            life1.SetActive(true);
+            life2.SetActive(false);
+        }
+        if (life == 0)
+        {
+            life1.SetActive(false);
+            life2.SetActive(false);
+        }
+        if (life <= 0)
+        {
+            gameOver.SetActive(true);
+        }
     }
     private void Awake()
     {
@@ -97,16 +118,18 @@ public class ControllerUI : MonoBehaviour
         var alphaBallon = ballonAlpha.GetComponent<RawImage>().color;
 
         var alphaText = textAlpha.GetComponent<Text>().color;
-
+        /*
         alphaBallon.a = Mathf.Lerp(alphaBallon.a, 0f, softened * Time.deltaTime);
 
         alphaText.a = Mathf.Lerp(alphaText.a, 0f, softened * Time.deltaTime);
 
-        if (alphaBallon.a <= 0.1f)
+        if (alphaBallon.a <= 0.3f)
         {
             alphaText.a = 0f;
             alphaBallon.a = 0f;
-        }
+        }*/
+        alphaText.a = 0f;
+        alphaBallon.a = 0f;
         ballonAlpha.GetComponent<RawImage>().color = alphaBallon;
         textAlpha.GetComponent<Text>().color = alphaText;
     }
@@ -138,6 +161,8 @@ public class ControllerUI : MonoBehaviour
             int i = 1;
             if (i == 1)
             {
+                positionOrder.GetComponent<Position>().end = false;
+                start = true;   
                 DisappearBalloonText();
             }
         }
@@ -147,7 +172,7 @@ public class ControllerUI : MonoBehaviour
             PopUpBallonText(); 
             Phases();
             if (start)
-            {
+            {   
                 CheckPhases();
                 start = false;
             }
@@ -177,6 +202,7 @@ public class ControllerUI : MonoBehaviour
             case 0:
                 for (int i = 0; i < ingredientsButtons.Length; ++i)
                 {
+                    ingredientsButtons[i].SetActive(true);
                     ingredientsButtons[i].GetComponentInChildren<Button>().interactable = false;
                 }
 
@@ -195,6 +221,7 @@ public class ControllerUI : MonoBehaviour
                 break;
 
             case 1:
+                ResetGeneral();
                 for (int i = 0; i < ingredientsButtons.Length; ++i)
                 {
                     ingredientsButtons[i].SetActive(true);
@@ -235,6 +262,7 @@ public class ControllerUI : MonoBehaviour
 
                 slider.SetActive(true);
                 glass.SetActive(true);
+                buttonNext.SetActive(false);
 
                 buttonMix.SetActive(false);
                 textMix.SetActive(false);
@@ -259,8 +287,16 @@ public class ControllerUI : MonoBehaviour
                 slider.SetActive(false);
 
                 glass.SetActive(false);
+
                 CheckOrder();
+
                 positionOrder.GetComponent<Position>().end = true;
+
+                numberList++;
+
+                phaseCurrent = -1;
+
+                CheckPhases();
 
                 break;
         }
@@ -303,6 +339,12 @@ public class ControllerUI : MonoBehaviour
         if (sizeDrink != size)
         {
             fail = true;
+        }
+
+        if (fail)
+        {
+            life--;
+            fail = false;
         }
     }
 
@@ -412,6 +454,7 @@ public class ControllerUI : MonoBehaviour
     public void Stop()
     {
         pause = true;
+        buttonNext.SetActive(true);
         value = slider.GetComponent<Slider>().value;
     }
     public void Pulsation()
@@ -438,5 +481,21 @@ public class ControllerUI : MonoBehaviour
         mangoButton = 0;
         granadillaButton = 0;
         milkButton = 0;
+    }
+
+    private void ResetGeneral()
+    {
+        ingredientsEntered = 0;
+        strawBerryButton = 0;
+        orangeButton = 0;
+        pineappleButton = 0;
+        papayaButton = 0;
+        bananaButton = 0;
+        mangoButton = 0;
+        granadillaButton = 0;
+        milkButton = 0;
+        mixClicks = 0; 
+        slider.GetComponent<Slider>().value = 0;
+        pause = false;
     }
 }

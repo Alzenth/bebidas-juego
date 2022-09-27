@@ -43,7 +43,6 @@ public class Position : MonoBehaviour
         if (collision.CompareTag("Person"))
         {
             occupied = false;
-            occupiedA = false;
             client = null;
         }
     }

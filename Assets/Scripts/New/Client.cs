@@ -20,7 +20,7 @@ public class Client : MonoBehaviour
 
     public float smooth;
 
-    public float location;
+    public Vector3 location;
 
     public GameObject[] targets;
 
@@ -32,10 +32,6 @@ public class Client : MonoBehaviour
     {
         this.GetComponent<SpriteRenderer>().sprite = Skin[Random.Range(0, 2)];
 
-        location = this.transform.position.x;
-
-        stateClient = StateClient.AdvancePosition;
-
     }
 
     void Start()
@@ -46,79 +42,99 @@ public class Client : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (stateClient == StateClient.AdvancePosition)
-        {
-            var position = transform.position;
-
-            if (ManaguerPosition.occupiedC == false &&  nextC == false)
+            if (stateClient == StateClient.AdvancePosition)
             {
-                StartCoroutine(Move(position, 0));
+                location = transform.position;
 
-                if (transform.position.x == targets[0].transform.position.x)
+                if (ManaguerPosition.occupiedC == false && nextC == false)
                 {
-                    nextC = true;
+                    //moverse(location, 0);
+                    StartCoroutine(Move(location, 0));
+
+                    if (transform.position.x == targets[0].transform.position.x)
+                    {
+                        Debug.Log("porque");
+                        nextC = true;
+                    }
                 }
-            }
-            if (ManaguerPosition.occupiedB == false && nextC && nextB == false)
-            {
-                StartCoroutine(Move(position, 1));
+                if (ManaguerPosition.occupiedB == false && nextC && nextB == false)
+                {
+                    //moverse(location, 1);
+                    StartCoroutine(Move(location, 1));
 
-                if (transform.position.x == targets[1].transform.position.x)
-                {
-                    nextB = true;
+                    if (transform.position.x == targets[1].transform.position.x)
+                    {
+                        nextB = true;
+                    }
                 }
-            }
-            if (ManaguerPosition.occupiedA == false && nextB)
-            {
-                StartCoroutine(Move(position, 2));
+                if (ManaguerPosition.occupiedA == false && nextB)
+                {
+                    //moverse(location, 2);
+                    StartCoroutine(Move(location, 2));
 
-                if (transform.position.x == targets[2].transform.position.x)
-                {
-                   nextA = true;
-                   stateClient  = StateClient.preparing;
+                    if (transform.position.x == targets[2].transform.position.x)
+                    {
+                        nextA = true;
+                        stateClient = StateClient.preparing;
+                    }
                 }
-            }
-            /*
-            if (ManaguerPosition.occupiedB == false)
-            {
-                if (ManaguerPosition.occupiedA)
+                /*
+                if (ManaguerPosition.occupiedB == false)
                 {
-                    Debug.Log("aO");
-                    position = Vector2.Lerp(position, targets[1].transform.position, smooth);
+                    if (ManaguerPosition.occupiedA)
+                    {
+                        Debug.Log("aO");
+                        position = Vector2.Lerp(position, targets[1].transform.position, smooth);
+
+                        Vector2 target = position;
+
+                        transform.position = target;
+                    }
+                }
+                if (ManaguerPosition.occupiedA == false)
+                {
+                    Debug.Log("no");
+                    position = Vector2.Lerp(position, targets[2].transform.position, smooth);
 
                     Vector2 target = position;
 
                     transform.position = target;
+
                 }
+                */
             }
-            if (ManaguerPosition.occupiedA == false)
+            if (end)
             {
-                Debug.Log("no");
-                position = Vector2.Lerp(position, targets[2].transform.position, smooth);
-
-                Vector2 target = position;
-
-                transform.position = target;
-
+                stateClient = StateClient.next;
             }
-            */
-        }
-        if (end)
-        {
-            stateClient = StateClient.next;
-        }
-        if (stateClient == StateClient.next)
-        {
-           StartCoroutine(Move(transform.position, 3));
-        }
+            if (stateClient == StateClient.next)
+            {
+                //moverse(location, 3);
+                StartCoroutine(Move(transform.position, 3));
+            }
+        
     }
 
+   /* public void moverse(Vector2 position, int i)
+    {
+        position.x = Mathf.Lerp(position.x, targets[i].transform.position.x, smooth * Time.deltaTime);
+
+        Vector2 target = new Vector2(position.x, 3.1f);
+
+        transform.position = target;
+    }
+   */
     IEnumerator Move(Vector2 position, int i)
     {
         position.x = Mathf.Lerp(position.x, targets[i].transform.position.x, smooth * Time.deltaTime);
 
         Vector2 target = new Vector2(position.x, 3.1f);
 
+        /*if (transform.position.x >= targets[i].transform.position.x - 0.2)
+        {
+            target = targets[i].transform.position;
+        }
+        */
         transform.position = target;
 
         yield return null;
@@ -140,7 +156,12 @@ public class Client : MonoBehaviour
         }
         if (collision.CompareTag("TargetEnd"))
         {
-            stateClient = StateClient.Wait;
+            transform.position = targets[4].transform.position;
+            nextA = false;
+            nextB = false;
+            nextC = false;
+            end = false;
+            stateClient = StateClient.Ninguno;
         }
     }
 }
