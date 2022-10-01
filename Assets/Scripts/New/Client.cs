@@ -22,6 +22,10 @@ public class Client : MonoBehaviour
 
     public Vector3 location;
 
+    public float time;
+
+    public float timeWait;
+
     public GameObject[] targets;
 
     public bool nextC,nextB, nextA;
@@ -103,27 +107,26 @@ public class Client : MonoBehaviour
                 }
                 */
             }
-            if (end)
+        if (stateClient == StateClient.preparing)
+        {
+            time += 1 * Time.deltaTime;
+            if (time >= timeWait)
             {
-                stateClient = StateClient.next;
+                end = true;
             }
-            if (stateClient == StateClient.next)
-            {
-                //moverse(location, 3);
-                StartCoroutine(Move(transform.position, 3));
-            }
+        }
+
+        if (end)
+        {
+           stateClient = StateClient.next;
+        }
+        if (stateClient == StateClient.next)
+        {
+           StartCoroutine(Move(transform.position, 3));
+        }
         
     }
 
-   /* public void moverse(Vector2 position, int i)
-    {
-        position.x = Mathf.Lerp(position.x, targets[i].transform.position.x, smooth * Time.deltaTime);
-
-        Vector2 target = new Vector2(position.x, 3.1f);
-
-        transform.position = target;
-    }
-   */
     IEnumerator Move(Vector2 position, int i)
     {
         position.x = Mathf.Lerp(position.x, targets[i].transform.position.x, smooth * Time.deltaTime);

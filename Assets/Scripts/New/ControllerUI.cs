@@ -16,7 +16,6 @@ public class ControllerUI : MonoBehaviour
 
     public bool fail;
 
-   [HideInInspector]
     public int strawBerry,
         orange,
         pineapple,
@@ -25,12 +24,10 @@ public class ControllerUI : MonoBehaviour
         mango,
         granadilla,
         milk;
-    [HideInInspector]
     public string type,
         size;
 
 
-    [HideInInspector]
     public int strawBerryButton,
         orangeButton,
         pineappleButton,
@@ -290,7 +287,7 @@ public class ControllerUI : MonoBehaviour
 
                 CheckOrder();
 
-                positionOrder.GetComponent<Position>().end = true;
+                positionOrder.GetComponent<Position>().client.GetComponent<Client>().end = true;
 
                 numberList++;
 
@@ -400,6 +397,10 @@ public class ControllerUI : MonoBehaviour
                 typeDrink = "Cream";
                 textMix.GetComponent<Text>().text = typeDrink;
                 buttonMix.GetComponent<Button>().interactable = false;
+            }
+            if (mixClicks < 7)
+            {
+                buttonMix.GetComponent<Button>().interactable = true;
             }
             if (mixClicks < 3)
             {

@@ -16,7 +16,7 @@ public class Position : MonoBehaviour
 
     private void Update()
     {
-        if (client != null)
+        /*if (client != null)
         {
             if (occupiedA)
             {
@@ -25,7 +25,7 @@ public class Position : MonoBehaviour
                     client.GetComponent<Client>().end = end;
                 }
             }
-        }
+        }*/
     
     }
 

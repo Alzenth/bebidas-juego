@@ -776,6 +776,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5cf8d3b7b0aa4b5439f18ccc7e6bc447, type: 3}
   smooth: 1
   location: {x: 0, y: 0, z: 0}
+  time: 0
+  timeWait: 40
   targets:
   - {fileID: 1377230432}
   - {fileID: 2047132214}
@@ -1916,6 +1918,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5cf8d3b7b0aa4b5439f18ccc7e6bc447, type: 3}
   smooth: 1
   location: {x: 0, y: 0, z: 0}
+  time: 0
+  timeWait: 40
   targets:
   - {fileID: 1377230432}
   - {fileID: 2047132214}
@@ -2224,6 +2228,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5cf8d3b7b0aa4b5439f18ccc7e6bc447, type: 3}
   smooth: 1
   location: {x: 0, y: 0, z: 0}
+  time: 0
+  timeWait: 40
   targets:
   - {fileID: 1377230432}
   - {fileID: 2047132214}
@@ -2979,6 +2985,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5cf8d3b7b0aa4b5439f18ccc7e6bc447, type: 3}
   smooth: 1
   location: {x: 0, y: 0, z: 0}
+  time: 0
+  timeWait: 40
   targets:
   - {fileID: 1377230432}
   - {fileID: 2047132214}
@@ -3518,6 +3526,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5cf8d3b7b0aa4b5439f18ccc7e6bc447, type: 3}
   smooth: 1
   location: {x: 0, y: 0, z: 0}
+  time: 0
+  timeWait: 40
   targets:
   - {fileID: 1377230432}
   - {fileID: 2047132214}
@@ -5553,6 +5563,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5cf8d3b7b0aa4b5439f18ccc7e6bc447, type: 3}
   smooth: 1
   location: {x: 0, y: 0, z: 0}
+  time: 0
+  timeWait: 20
   targets:
   - {fileID: 1377230432}
   - {fileID: 2047132214}
@@ -6068,6 +6080,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5cf8d3b7b0aa4b5439f18ccc7e6bc447, type: 3}
   smooth: 1
   location: {x: 0, y: 0, z: 0}
+  time: 0
+  timeWait: 40
   targets:
   - {fileID: 1377230432}
   - {fileID: 2047132214}
@@ -7292,6 +7306,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5cf8d3b7b0aa4b5439f18ccc7e6bc447, type: 3}
   smooth: 1
   location: {x: 0, y: 0, z: 0}
+  time: 0
+  timeWait: 40
   targets:
   - {fileID: 1377230432}
   - {fileID: 2047132214}
