@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 2-1
   m_EditorClassIdentifier: 
   name: Jugo de naranja
-  textoPedido: "Un jugo de naranja peque\xF1o, gracias\r."
+  textoPedido: "*Estornudo* Disculpe se\xF1or tengo gripe, quisiera un jugo clasico
+    de naranja peque\xF1o."
   strawBerry: 0
   orange: 3
   pineapple: 0
@@ -22,5 +23,5 @@ MonoBehaviour:
   mango: 0
   granadilla: 0
   milk: 0
-  typeDrink: Classic
-  sizeDrink: Small
+  typeDrink: Clasico
+  sizeDrink: "Peque\xF1o"

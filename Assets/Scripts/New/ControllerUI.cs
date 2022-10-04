@@ -7,7 +7,6 @@ public class ControllerUI : MonoBehaviour
 {
     public Text orderText;
     public GameObject ballonAlpha;
-    public GameObject textAlpha;
     public GameObject life1,life2;
 
     public List<Recipe> recipe = new List<Recipe>();
@@ -45,9 +44,11 @@ public class ControllerUI : MonoBehaviour
     public GameObject gameOver;
     public GameObject buttonNext;
     public ManaguerPosition managuerPosition;
+    public GameObject Winner;
 
     public int phaseCurrent;
     public bool start;
+    public bool finish;
     //public int recipeOrder;
 
     [Header("Phase 1")]
@@ -69,7 +70,7 @@ public class ControllerUI : MonoBehaviour
     public string sizeDrink;
     private float value;
     public float multiply;
-    public bool pause, loop;
+    public bool pause, loop, bored;
     public GameObject glass;
     public GameObject slider;
     public GameObject botonDeServir;
@@ -83,6 +84,7 @@ public class ControllerUI : MonoBehaviour
 
     private void Update()
     {
+        Win();
         DrinkOrder();
         CheckIngredients();
         if (life == 2)
@@ -110,11 +112,23 @@ public class ControllerUI : MonoBehaviour
         CheckPhases();
     }
 
+    public void Win()
+    {
+        if (numberList >= 13 && ManaguerPosition.occupiedA == false)
+        {
+            Winner.SetActive(true);
+        }
+    }
+    
+
     public void DisappearBalloonText()
     {
-        var alphaBallon = ballonAlpha.GetComponent<RawImage>().color;
 
-        var alphaText = textAlpha.GetComponent<Text>().color;
+        var alphaBallon = ballonAlpha.GetComponent<CanvasGroup>().alpha;
+
+        //var alphaBallon = ballonAlpha.GetComponent<RawImage>().color;
+
+       // var alphaText = textAlpha.GetComponent<Text>().color;
         /*
         alphaBallon.a = Mathf.Lerp(alphaBallon.a, 0f, softened * Time.deltaTime);
 
@@ -125,178 +139,168 @@ public class ControllerUI : MonoBehaviour
             alphaText.a = 0f;
             alphaBallon.a = 0f;
         }*/
-        alphaText.a = 0f;
-        alphaBallon.a = 0f;
-        ballonAlpha.GetComponent<RawImage>().color = alphaBallon;
-        textAlpha.GetComponent<Text>().color = alphaText;
+        //alphaText.a = 0f;
+        alphaBallon = 0f;
+        ballonAlpha.GetComponent<CanvasGroup>().alpha = alphaBallon;
+        //textAlpha.GetComponent<Text>().color = alphaText;
     }
 
     public void PopUpBallonText()
     {
-        var alphaBallon = ballonAlpha.GetComponent<RawImage>().color;
+        var alphaBallon = ballonAlpha.GetComponent<CanvasGroup>().alpha;
 
-        var alphaText = textAlpha.GetComponent<Text>().color;
+        //var alphaBallon = ballonAlpha.GetComponent<RawImage>().color;
 
-        alphaBallon.a = Mathf.Lerp(alphaBallon.a, 1f, softened * Time.deltaTime);
+       // var alphaText = textAlpha.GetComponent<Text>().color;
 
-        alphaText.a = Mathf.Lerp(alphaText.a, 1f, softened * Time.deltaTime);
+        alphaBallon = Mathf.Lerp(alphaBallon, 1f, softened * Time.deltaTime);
 
-        if (alphaBallon.a >= 0.9f)
+        //alphaText.a = Mathf.Lerp(alphaText.a, 1f, softened * Time.deltaTime);
+
+        if (alphaBallon >= 0.9f)
         {
-            alphaText.a = 1f;
-            alphaBallon.a = 1f;
+            //alphaText.a = 1f;
+            alphaBallon = 1f;
             Phases();
         }
-       // Debug.Log(alphaBallon);
-        ballonAlpha.GetComponent<RawImage>().color = alphaBallon;
-        textAlpha.GetComponent<Text>().color = alphaText;
+        // Debug.Log(alphaBallon);
+        ballonAlpha.GetComponent<CanvasGroup>().alpha = alphaBallon;
+        //ballonAlpha.GetComponent<RawImage>().color = alphaBallon;
+        //textAlpha.GetComponent<Text>().color = alphaText;
     }
     public void DrinkOrder()
     {
-        if (ManaguerPosition.occupiedA == false)
+        if (ManaguerPosition.occupiedA)
         {
-            int i = 1;
-            if (i == 1)
-            {
-                positionOrder.GetComponent<Position>().end = false;
-                start = true;   
-                DisappearBalloonText();
-            }
-        }
-        else 
-        {
-            Debug.Log("asd");
-            PopUpBallonText(); 
+            PopUpBallonText();
             Phases();
             if (start)
-            {   
+            {
                 CheckPhases();
                 start = false;
             }
+            if (bored)
+            {
+                bored = !bored;
+                life--;
+                numberList++;
+                phaseCurrent = -1;
+                CheckPhases(); 
+                ResetGeneral();
+            }
+            else { }
+        }
+        else
+        {
+            positionOrder.GetComponent<Position>().end = false;
+            start = true;
+            DisappearBalloonText();
+            
         }
     }
 
     public void CheckIngredients()
     {
-        orderText.text = recipe[numberList].textoPedido;
-        strawBerry = recipe[numberList].strawBerry;
-        orange = recipe[numberList].orange;
-        pineapple = recipe[numberList].pineapple;
-        papaya = recipe[numberList].papaya;
-        banana = recipe[numberList].banana;
-        mango = recipe[numberList].mango;
-        granadilla = recipe[numberList].granadilla;
-        milk = recipe[numberList].milk;
-        type = recipe[numberList].typeDrink;
-        size = recipe[numberList].sizeDrink;
+        if (numberList < 13)
+        {
+            orderText.text = recipe[numberList].textoPedido;
+            strawBerry = recipe[numberList].strawBerry;
+            orange = recipe[numberList].orange;
+            pineapple = recipe[numberList].pineapple;
+            papaya = recipe[numberList].papaya;
+            banana = recipe[numberList].banana;
+            mango = recipe[numberList].mango;
+            granadilla = recipe[numberList].granadilla;
+            milk = recipe[numberList].milk;
+            type = recipe[numberList].typeDrink;
+            size = recipe[numberList].sizeDrink;
+        }
     }
 
     public void CheckPhases()
     {
         phaseCurrent++;
-        switch (phaseCurrent)
+        if (numberList <= 13)
         {
-            case 0:
-                for (int i = 0; i < ingredientsButtons.Length; ++i)
-                {
-                    ingredientsButtons[i].SetActive(true);
-                    ingredientsButtons[i].GetComponentInChildren<Button>().interactable = false;
-                }
+            switch (phaseCurrent)
+            {
+                case 0:
+                    for (int i = 0; i < ingredientsButtons.Length; ++i)
+                    {
+                        ingredientsButtons[i].SetActive(true);
+                        ingredientsButtons[i].GetComponentInChildren<Button>().interactable = false;
+                    }
+                    buttonMix.SetActive(false);
+                    buttonSize.SetActive(false);
+                    buttonNext.SetActive(false);
+                    buttonResetPhase1.SetActive(false);
+                    slider.SetActive(false);
+                    textMix.SetActive(false);
+                    glass.SetActive(false);
 
-                buttonMix.SetActive(false);
+                    finish = false;
+                    break;
 
-                buttonSize.SetActive(false);
+                case 1:
+                    ResetGeneral();
+                    for (int i = 0; i < ingredientsButtons.Length; ++i)
+                    {
+                        ingredientsButtons[i].SetActive(true);
+                        ingredientsButtons[i].GetComponentInChildren<Button>().interactable = true;
+                    }
+                    buttonMix.SetActive(false);
+                    buttonSize.SetActive(false);
+                    buttonResetPhase1.SetActive(false);
+                    break;
 
-                buttonNext.SetActive(false);
+                case 2:
 
-                buttonResetPhase1.SetActive(false);
+                    for (int i = 0; i < ingredientsButtons.Length; ++i)
+                    {
+                        ingredientsButtons[i].SetActive(false);
+                    }
+                    buttonNext.SetActive(false);
+                    buttonResetPhase1.SetActive(false);
+                    buttonMix.SetActive(true);
+                    textMix.SetActive(true);
+                    buttonSize.SetActive(false);
+                    break;
 
-                slider.SetActive(false);
-                textMix.SetActive(false);
+                case 3:
+                    for (int i = 0; i < ingredientsButtons.Length; ++i)
+                    {
+                        ingredientsButtons[i].SetActive(false);
+                    }
+                    slider.SetActive(true);
+                    glass.SetActive(true);
+                    buttonNext.SetActive(false);
+                    buttonMix.SetActive(false);
+                    textMix.SetActive(false);
+                    buttonSize.SetActive(true);
+                    break;
 
-                glass.SetActive(false);
-                break;
+                case 4:
+                    for (int i = 0; i < ingredientsButtons.Length; ++i)
+                    {
+                        ingredientsButtons[i].GetComponentInChildren<Button>().interactable = false;
+                    }
+                    buttonMix.SetActive(false);
+                    buttonSize.SetActive(false);
+                    buttonNext.SetActive(false);
+                    buttonResetPhase1.SetActive(false);
+                    slider.SetActive(false);
+                    glass.SetActive(false);
+                    CheckOrder();
 
-            case 1:
-                ResetGeneral();
-                for (int i = 0; i < ingredientsButtons.Length; ++i)
-                {
-                    ingredientsButtons[i].SetActive(true);
-                    ingredientsButtons[i].GetComponentInChildren<Button>().interactable = true;
-                }
-
-                buttonMix.SetActive(false);
-
-                buttonSize.SetActive(false);
-
-                buttonResetPhase1.SetActive(false);
-
-                break;
-
-            case 2:
-
-                for (int i = 0; i < ingredientsButtons.Length; ++i)
-                {
-                    ingredientsButtons[i].SetActive(false);
-                }
-
-                buttonNext.SetActive(false);
-
-                buttonResetPhase1.SetActive(false);
-
-                buttonMix.SetActive(true);
-
-                textMix.SetActive(true);
-
-                buttonSize.SetActive(false);
-                break;
-
-            case 3:
-                for (int i = 0; i < ingredientsButtons.Length; ++i)
-                {
-                    ingredientsButtons[i].SetActive(false);
-                }
-
-                slider.SetActive(true);
-                glass.SetActive(true);
-                buttonNext.SetActive(false);
-
-                buttonMix.SetActive(false);
-                textMix.SetActive(false);
-
-                buttonSize.SetActive(true);
-                break;
-
-            case 4:
-                for (int i = 0; i < ingredientsButtons.Length; ++i)
-                {
-                    ingredientsButtons[i].GetComponentInChildren<Button>().interactable = false;
-                }
-
-                buttonMix.SetActive(false);
-
-                buttonSize.SetActive(false);
-
-                buttonNext.SetActive(false);
-
-                buttonResetPhase1.SetActive(false);
-
-                slider.SetActive(false);
-
-                glass.SetActive(false);
-
-                CheckOrder();
-
-                positionOrder.GetComponent<Position>().client.GetComponent<Client>().end = true;
-
-                numberList++;
-
-                phaseCurrent = -1;
-
-                CheckPhases();
-
-                break;
+                    positionOrder.GetComponent<Position>().client.GetComponent<Client>().end = true;
+                    numberList++; 
+                    phaseCurrent = -1;
+                    CheckPhases();
+                    finish = true;
+                    break;
+            }
         }
+    
     }
 
     public void CheckOrder()
@@ -382,19 +386,19 @@ public class ControllerUI : MonoBehaviour
             if (mixClicks >= 3 && mixClicks < 4)
             {
                 //clasico
-                typeDrink = "Classic";
+                typeDrink = "Clasico";
                 textMix.GetComponent<Text>().text = typeDrink;
             }
             if (mixClicks >= 4 && mixClicks < 7)
             {
                 //especial
-                typeDrink = "Specials";
+                typeDrink = "Especial";
                 textMix.GetComponent<Text>().text = typeDrink;
             }
             if (mixClicks >= 7)
             {
                 //batido
-                typeDrink = "Cream";
+                typeDrink = "Batido";
                 textMix.GetComponent<Text>().text = typeDrink;
                 buttonMix.GetComponent<Button>().interactable = false;
             }
@@ -416,15 +420,15 @@ public class ControllerUI : MonoBehaviour
                 switch (value)
                 {
                     case float n when (n >= 0 && n <= 20):
-                        sizeDrink = "Small";
+                        sizeDrink = "Pequeño";
                         break;
 
                     case float n when (n >= 21 && n <= 40):
-                        sizeDrink = "Medium";
+                        sizeDrink = "Mediano";
                         break;
 
                     case float n when (n >= 41 && n <= 60):
-                        sizeDrink = "Large";
+                        sizeDrink = "Grande";
                         break;
                 }
             }

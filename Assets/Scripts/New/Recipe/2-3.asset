@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 2-3
   m_EditorClassIdentifier: 
   name: Especial de granadilla
-  textoPedido: "Me da un especial de granadilla mediana, \xBFpor favor?\r"
+  textoPedido: '*Tos* *Tos* Me recomendaron un especial de granadilla, quisiera uno
+    mediano gracias.'
   strawBerry: 0
   orange: 0
   pineapple: 0
@@ -22,5 +23,5 @@ MonoBehaviour:
   mango: 0
   granadilla: 3
   milk: 0
-  typeDrink: Specials
-  sizeDrink: Medium
+  typeDrink: Especial
+  sizeDrink: Mediano

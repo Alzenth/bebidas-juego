@@ -22,6 +22,8 @@ public class Client : MonoBehaviour
 
     public Vector3 location;
 
+    public ControllerUI controllerUI;
+
     public float time;
 
     public float timeWait;
@@ -46,6 +48,8 @@ public class Client : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (controllerUI.life != 0)
+        {
             if (stateClient == StateClient.AdvancePosition)
             {
                 location = transform.position;
@@ -107,24 +111,27 @@ public class Client : MonoBehaviour
                 }
                 */
             }
-        if (stateClient == StateClient.preparing)
-        {
-            time += 1 * Time.deltaTime;
-            if (time >= timeWait)
+            if (stateClient == StateClient.preparing)
             {
-                end = true;
+                time += 1 * Time.deltaTime;
+                if (time >= timeWait)
+                {
+                    controllerUI.bored = true;
+                    end = true;
+                    time = 0;
+                }
+            }
+
+            if (end)
+            {
+                stateClient = StateClient.next;
+            }
+            if (stateClient == StateClient.next)
+            {
+                StartCoroutine(Move(transform.position, 3));
             }
         }
-
-        if (end)
-        {
-           stateClient = StateClient.next;
-        }
-        if (stateClient == StateClient.next)
-        {
-           StartCoroutine(Move(transform.position, 3));
-        }
-        
+    
     }
 
     IEnumerator Move(Vector2 position, int i)

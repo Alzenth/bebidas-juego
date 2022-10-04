@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 1-1
   m_EditorClassIdentifier: 
   name: Jugo de fresa
-  textoPedido: "Me da un jugo de fresa tama\xF1o mediano \xBFpor favor?"
+  textoPedido: "Me duele el est\xF3mago quiz\xE1 un jugo clasico de fresa mediano
+    me podr\xEDa ayudar."
   strawBerry: 3
   orange: 0
   pineapple: 0
@@ -22,5 +23,5 @@ MonoBehaviour:
   mango: 0
   granadilla: 0
   milk: 0
-  typeDrink: Classic
-  sizeDrink: Medium
+  typeDrink: Clasico
+  sizeDrink: Mediano

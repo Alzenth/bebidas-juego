@@ -5,20 +5,19 @@ using UnityEngine;
 public class Libro : MonoBehaviour
 {
     public GameObject libro;
-    public GameObject boton;
+    public bool abierto;
 
-    public void Iluminate()
+    public void Book()
     {
-        libro.SetActive(true);
-        boton.SetActive(true);
-        this.gameObject.SetActive(false);
-        
-    }
-    public void Apagate()
-    {
-        libro.SetActive(false);
-        boton.SetActive(true);
-        this.gameObject.SetActive(false);
-
+        if (abierto)
+        {
+            libro.SetActive(false);
+            abierto = !abierto;
+        }
+        else
+        {
+            libro.SetActive(true);
+            abierto = !abierto;
+        }
     }
 }

@@ -9,6 +9,7 @@ public class ManaguerPosition : MonoBehaviour
     public bool occupieA, occupieB, occupieC;
     public GameObject[] client;
     public float time;
+    public int numberClient = 0;
     public int i = 1;
 
     private void Awake()
@@ -16,33 +17,38 @@ public class ManaguerPosition : MonoBehaviour
         occupiedA = false;
         occupiedB = false;
         occupiedC = false;
+        numberClient++;
         client[i].GetComponent<Client>().stateClient = Client.StateClient.AdvancePosition;
     }
 
     private void Update()
-    {
-        if (i < 4)
+    {if (numberClient <= 12)
         {
-            time += 1 * Time.deltaTime;
+            if (i < 4)
+            {
+                time += 1 * Time.deltaTime;
+            }
+            if (time >= 40 && occupieC == false && i < 4)
+            {
+                i++;
+                client[i].GetComponent<Client>().stateClient = Client.StateClient.AdvancePosition;
+                time = 0;
+                numberClient++;
+            }
+            if (i == 4)
+            {
+                i = 0;
+                time = 0;
+            }
         }
-        if (time >= 15 && occupieC == false && i < 5)
-        {
-            i++;
-            client[i].GetComponent<Client>().stateClient = Client.StateClient.AdvancePosition;
-            time = 0;
-        }
-        if (i == 4)
-        {
-            i = 0;
-            time = 0;
-        }
-        occupieA = occupiedA;
-        occupieB = occupiedB;
-        occupieC = occupiedC;
+            occupieA = occupiedA;
+            occupieB = occupiedB;
+            occupieC = occupiedC;
 
-        occupiedA = positionA.GetComponent<Position>().occupied;
-        occupiedB = positionB.GetComponent<Position>().occupied;
-        occupiedC = positionC.GetComponent<Position>().occupied;
+            occupiedA = positionA.GetComponent<Position>().occupied;
+            occupiedB = positionB.GetComponent<Position>().occupied;
+            occupiedC = positionC.GetComponent<Position>().occupied;
+        
     }
 
 }

@@ -22,5 +22,5 @@ MonoBehaviour:
   mango: 1
   granadilla: 1
   milk: 0
-  typeDrink: Specials
-  sizeDrink: Large
+  typeDrink: Especial
+  sizeDrink: Grande

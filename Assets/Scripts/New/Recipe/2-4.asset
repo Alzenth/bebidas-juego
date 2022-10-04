@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 2-4
   m_EditorClassIdentifier: 
   name: "Batido de pl\xE1tano"
-  textoPedido: "Quisiera un batido de pl\xE1tano mediano\r."
+  textoPedido: "Me duele todo los m\xFAsculos, un batido de pl\xE1tano mediano, rapido
+    por favor\r."
   strawBerry: 0
   orange: 0
   pineapple: 0
@@ -22,5 +23,5 @@ MonoBehaviour:
   mango: 0
   granadilla: 0
   milk: 2
-  typeDrink: Cream
-  sizeDrink: Medium
+  typeDrink: Batido
+  sizeDrink: Mediano

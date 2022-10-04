@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 1-3
   m_EditorClassIdentifier: 
   name: "Jugo de pi\xF1a"
-  textoPedido: "Un jugo de pi\xF1a peque\xF1o, por favor\r."
+  textoPedido: "Hay dios creo que estoy tr\xE1nsito intestinal, un jugo clasico de
+    pi\xF1a peque\xF1o por favor.\r\n"
   strawBerry: 0
   orange: 0
   pineapple: 3
@@ -22,5 +23,5 @@ MonoBehaviour:
   mango: 0
   granadilla: 0
   milk: 0
-  typeDrink: Classic
-  sizeDrink: Small
+  typeDrink: Clasico
+  sizeDrink: "Peque\xF1o"

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1-4
   m_EditorClassIdentifier: 
   name: Batido de fresa
-  textoPedido: "Un batido de fresa mediano, si no es mucha molestia\r."
+  textoPedido: "Un batido de fresa mediano si no es mucha molestia\r."
   strawBerry: 2
   orange: 0
   pineapple: 0
@@ -22,5 +22,5 @@ MonoBehaviour:
   mango: 0
   granadilla: 0
   milk: 1
-  typeDrink: Cream
-  sizeDrink: Medium
+  typeDrink: Batido
+  sizeDrink: Mediano

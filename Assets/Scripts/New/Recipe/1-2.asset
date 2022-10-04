@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 1-2
   m_EditorClassIdentifier: 
   name: Especial de mango
-  textoPedido: "Quisiera un especial de mango grande\r."
+  textoPedido: "Quisiera un especial de mango grande por favor, es bueno para el
+    colon\r."
   strawBerry: 0
   orange: 0
   pineapple: 0
@@ -22,5 +23,5 @@ MonoBehaviour:
   mango: 3
   granadilla: 0
   milk: 0
-  typeDrink: Specials
-  sizeDrink: Large
+  typeDrink: Especial
+  sizeDrink: Grande

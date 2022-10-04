@@ -22,5 +22,5 @@ MonoBehaviour:
   mango: 0
   granadilla: 0
   milk: 1
-  typeDrink: Cream
-  sizeDrink: Small
+  typeDrink: Batido
+  sizeDrink: "Peque\xF1o"
