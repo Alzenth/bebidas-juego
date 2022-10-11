@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 2-2
   m_EditorClassIdentifier: 
   name: Surtido fresco
-  textoPedido: "Qu\xE9 calor tengo! Un surtido fresco grande por favor\r.\n"
+  textoPedido: "\xA1Qu\xE9 calor tengo! Un (surtido fresco) (grande) por favor."
   strawBerry: 0
   orange: 1
   pineapple: 1

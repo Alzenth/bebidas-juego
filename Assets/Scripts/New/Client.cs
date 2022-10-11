@@ -129,6 +129,7 @@ public class Client : MonoBehaviour
             if (stateClient == StateClient.next)
             {
                 StartCoroutine(Move(transform.position, 3));
+                time = 0;
             }
         }
     

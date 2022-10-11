@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 2-4
   m_EditorClassIdentifier: 
   name: "Batido de pl\xE1tano"
-  textoPedido: "Me duele todo los m\xFAsculos, un batido de pl\xE1tano mediano, rapido
-    por favor\r."
+  textoPedido: "Me duele todo los (m\xFAsculos), un (batido de pl\xE1tano) (mediano),
+    rapido por favor."
   strawBerry: 0
   orange: 0
   pineapple: 0

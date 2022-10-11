@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 1-1
   m_EditorClassIdentifier: 
   name: Jugo de fresa
-  textoPedido: "Me duele el est\xF3mago quiz\xE1 un jugo clasico de fresa mediano
-    me podr\xEDa ayudar."
+  textoPedido: "Me duele el (Est\xF3mago) quiz\xE1 un (jugo de fresa) (mediano/M)
+    me podr\xEDa ayudar.\r\n"
   strawBerry: 3
   orange: 0
   pineapple: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3-5
   m_EditorClassIdentifier: 
   name: Especial dulce
-  textoPedido: "Deme un especial dulce mediano, gracias de antemano\r."
+  textoPedido: "Necesito un (especial dulce) (mediano), gracias de antemano.\r"
   strawBerry: 1
   orange: 0
   pineapple: 1

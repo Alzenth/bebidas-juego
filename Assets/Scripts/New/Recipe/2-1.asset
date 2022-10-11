@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 2-1
   m_EditorClassIdentifier: 
   name: Jugo de naranja
-  textoPedido: "*Estornudo* Disculpe se\xF1or tengo gripe, quisiera un jugo clasico
-    de naranja peque\xF1o."
+  textoPedido: "*Estornudo* Disculpe se\xF1or tengo (gripe), quisiera un (jugo de
+    naranja) (peque\xF1o)\r"
   strawBerry: 0
   orange: 3
   pineapple: 0

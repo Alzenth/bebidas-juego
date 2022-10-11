@@ -389,7 +389,7 @@ public class ControllerUI : MonoBehaviour
                 typeDrink = "Clasico";
                 textMix.GetComponent<Text>().text = typeDrink;
             }
-            if (mixClicks >= 4 && mixClicks < 7)
+            if (mixClicks >= 5 && mixClicks < 7)
             {
                 //especial
                 typeDrink = "Especial";

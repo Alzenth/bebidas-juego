@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: 3-1
   m_EditorClassIdentifier: 
   name: Surtido dulce
-  textoPedido: "Buenas, quisiera un surtido clasico dulce de tama\xF1o grande por
-    favor\r."
+  textoPedido: "Buenas, quisiera un (surtido dulce) (grande) por favor.\r"
   strawBerry: 1
   orange: 1
   pineapple: 0

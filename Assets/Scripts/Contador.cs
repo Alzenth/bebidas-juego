@@ -12,7 +12,7 @@ public class Contador : MonoBehaviour
     {
         if (position.client != null)
         {
-            this.GetComponent<Slider>().value = 40f - position.client.GetComponent<Client>().time;
+            this.GetComponent<Slider>().value = 50f - position.client.GetComponent<Client>().time;
         }
         else { }
     }

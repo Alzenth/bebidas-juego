@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3-2
   m_EditorClassIdentifier: 
   name: Batido de mango
-  textoPedido: "Un batido de mango peque\xF1o, si no es molestia\r."
+  textoPedido: "Un (batido de mango) (peque\xF1o) si no es molestia."
   strawBerry: 0
   orange: 0
   pineapple: 0

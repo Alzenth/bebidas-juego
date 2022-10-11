@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3-4
   m_EditorClassIdentifier: 
   name: Batido de papaya
-  textoPedido: "Quiero un batido de papaya peque\xF1o, por favor\r."
+  textoPedido: "Quiero un (batido de papaya) (peque\xF1o) por favor.\r"
   strawBerry: 0
   orange: 0
   pineapple: 0
